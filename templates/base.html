@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/default.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/meanmenu.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/responsive.css">
+</head>
+<body>
+<header>
+    <!-- header-top-area-start -->
+    <div class="header-top-area mb-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3">
+                    <div class="logo">
+                        <a href="/"><img src="/static/img/логотип.png" alt=""/></a>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9">
+                    <div class="main-menu text-right">
+                        <nav id="mobile-menu">
+                            <ul>
+                                {% if current_user.is_authenticated %}
+                                <li><a href="/posts">лента</a></li>
+                                <li><a href="/news">добавить пост</a></li>
+                                <li><a href="#">{{ current_user.name }}</a>
+                                    <ul class="sub-menu text-left">
+                                        <li><a href="#">профиль</a></li>
+                                        <li><a href="/logout">выход</a></li>
+                                    </ul>
+                                </li>
+                                {% else %}
+                                <li><a href="/posts">лента</a></li>
+                                <li><a href="/login">вход</a></li>
+                                <li><a href="/register">регистрация</a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header-top-area-end -->
+</header>
+<!-- Begin page content -->
+<main role="main" class="container">
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    <div class="footer-area pt-40 pb-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-5 col-md-5 mb-20">
+                    <div class="footer-icon">
+                        <a href="https://github.com/DoobleFreeze"><i class="fa fa-github fa-lg"></i></a>
+                        <a href="https://vk.com/df_nik"><i class="fa fa-vk fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-7 mb-20">
+                    <div class="copyright text-md-right">
+                        <p>Copyright <i class="fa fa-copyright"></i> 2021 Post.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/static/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/static/js/popper.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/isotope.pkgd.min.js"></script>
+<script src="/static/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/js/slick.min.js"></script>
+<script src="/static/js/jquery.meanmenu.min.js"></script>
+<script src="/static/js/ajax-form.js"></script>
+<script src="/static/js/wow.min.js"></script>
+<script src="/static/js/jquery.scrollUp.min.js"></script>
+<script src="/static/js/imagesloaded.pkgd.min.js"></script>
+<script src="/static/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/js/plugins.js"></script>
+<script src="/static/js/main.js"></script>
+</body>
+</html>
