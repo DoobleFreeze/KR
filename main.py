@@ -14,6 +14,7 @@ from newsform import NewsForm
 app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
+db_session.global_init("db/blogs.sqlite")
 app.config['SECRET_KEY'] = 'rtu_mirea_ona_key'  # Ключ для хеширования паролей
 
 
@@ -24,7 +25,6 @@ def load_user(user_id):  # Возвращает информацию о поль
 
 
 def main():
-    db_session.global_init("db/blogs.sqlite")  # Открывает базу данных
     app.run()  # Запускает сайт
 
 
