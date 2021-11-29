@@ -1,7 +1,6 @@
 # Испорт функций для основой работы сайта
-from flask import Flask, render_template, redirect, request, make_response, session, abort
+from flask import Flask, render_template, redirect, request, abort
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from flask_ngrok import run_with_ngrok
 # Импорт функций (Классов) для работы с базой данных
 from data import db_session
 from data.users import User
@@ -13,7 +12,6 @@ from newsform import NewsForm
 
 # Операции для запуска сайта
 app = Flask(__name__)
-run_with_ngrok(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.config['SECRET_KEY'] = 'rtu_mirea_ona_key'  # Ключ для хеширования паролей
