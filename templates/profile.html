@@ -1,15 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="post col-md-8 col-sm-12 offset-md-2 mb-20">
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 mb-15 mt-15">
+            <div class="about-img">
+                <img src="/static/img/profile.png" alt=""/>
+            </div>
+        </div>
+        <div class="col-xl-8 col-lg-8 mb-15 mt-15">
+            <div class="about-wrapper">
+                <h4 class="about-title">{{user[0]}}</h4>
+                <p>{{user[1]}}</p>
+            </div>
+        </div>
+    </div>
+</div>
 {% for item in news%}
-<div class="post col-md-6 col-sm-12 col-xs-12 offset-md-3 mb-20">
+<div class="post col-md-6 col-sm-12 col-12 offset-md-3 mb-20">
     <div class="row">
         <div class="col-md-8 col-sm-8 col-8">
             <h2>{{item[0]}}</h2>
         </div>
         <div class="col-md-4 col-sm-4 col-4 text-right">
             {% if current_user.is_authenticated and current_user == item[3] %}
-            <a href="/news/{{ item[6] }}" class="btn btn-ch-dl" ><i class="fa fa-pencil-square-o fa-2x"></i></a>
+            <a href="/news/{{ item[6] }}" class="btn btn-ch-dl"><i class="fa fa-pencil-square-o fa-2x"></i></a>
             <a href="/news_delete/{{ item[6] }}" class="btn btn-ch-dl"><i class="fa fa-trash-o fa-2x"></i></a>
             {% endif %}
         </div>
@@ -26,7 +41,7 @@
         {{item[1]}}
     </div>
     <div class="pb-10">
-        <font color="#808080">Автор: </font><a href="/profile/{{item[6]}}" class="a-profile">{{item[2]}}</a>
+        <font color="#808080">Автор: </font>{{item[2]}}
     </div>
     {% endif %}
 </div>

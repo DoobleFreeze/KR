@@ -51,11 +51,40 @@ def posts():
     return render_template("posts.html", news=sp, title='Лента')
 
 
+@app.route("/profile/<int:id>")
+def profile(id):
+    session = db_session.create_session()
+    user = session.query(User).filter(User.id == id).first()
+    us = [user.name, user.about]
+    news = session.query(News).filter((News.user_id == id) &
+                                      (News.is_private != True))
+    s = []
+    for i in news:
+        x = [i.title, i.content, i.user.name, i.user]
+        a = str(i.created_date).split()
+        c = a[0].split('-')
+        b = ':'.join(a[1].split(":")[:2]) + ' ' + "{}.{}.{}".format(c[2], c[1], c[0])
+        x.append(b)
+        x.append(i.is_private)
+        x.append(i.id)
+        s.append(x)
+    sp = list(reversed(s))
+    return render_template("profile.html", user=us, news=sp, title='Профиль')
+
+
 @app.route('/news', methods=['GET', 'POST'])
 @login_required
 def add_news():
     form = NewsForm()
     if form.validate_on_submit():
+        if len(form.title.data) > 20:
+            return render_template('news.html', title='Добавление поста',
+                                   form=form,
+                                   message="*Максимальная длинна заголовка - 20 символов")
+        if len(form.content.data) > 300:
+            return render_template('news.html', title='Добавление поста',
+                                   form=form,
+                                   message="*Максимальная длинна текста - 300 символов")
         session = db_session.create_session()
         news = News()
         news.title = form.title.data
@@ -84,6 +113,14 @@ def edit_news(id):
         else:
             abort(404)
     if form.validate_on_submit():
+        if len(form.title.data) > 20:
+            return render_template('news.html', title='Редактирование поста',
+                                   form=form,
+                                   message="*Максимальная длинна заголовка - 20 символов")
+        if len(form.content.data) > 300:
+            return render_template('news.html', title='Редактирование поста',
+                                   form=form,
+                                   message="*Максимальная длинна текста - 300 символов")
         session = db_session.create_session()
         news = session.query(News).filter(News.id == id,
                                           News.user == current_user).first()

@@ -343,6 +343,13 @@ label {
     margin-top: 33px;
 }
 
+.img-profile {
+}
+
+.img-profile img {
+    width: 100%;
+}
+
 .main-menu ul {
 }
 
@@ -1351,10 +1358,14 @@ body {
 
 .about-title {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 30px;
     color: #000000;
     margin-bottom: 16px;
     text-transform: uppercase;
+}
+
+.a-profile {
+    color: #000000;
 }
 
 .about-link {
